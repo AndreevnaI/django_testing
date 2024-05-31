@@ -29,7 +29,6 @@ class TestNoteCreation(TestCase):
         note = Note.objects.get()
         self.assertEqual(note.title, 'Заголовок')
         self.assertEqual(note.text, 'Текст')
-        self.assertEqual(note.slug, )
         self.assertEqual(note.author, self.user)
 
     def test_anonymous_user_cant_create_note(self):
@@ -48,7 +47,7 @@ class TestNoteCreation(TestCase):
     def test_automatic_creation_slug(self):
         self.auth_client.post(self.url, data=self.form_data)
         note = Note.objects.get()
-        self.assertEqual(note.slug, '')
+        self.assertEqual(note.slug, 'zagolovok')
 
 
 class TestEditAndDeleteNotes(TestCase):
