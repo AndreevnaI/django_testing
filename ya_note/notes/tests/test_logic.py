@@ -33,8 +33,10 @@ class TestNoteCreation(TestCase):
 
     def test_anonymous_user_cant_create_note(self):
         self.client.post(self.url, data=self.form_data)
-        notes_count = Note.objects.count()
-        self.assertEqual(notes_count, 0)
+        # notes_count = Note.objects.count()
+        # self.assertEqual(notes_count, 0)
+        notes_count = Note.objects.exists()
+        self.assertFalse(notes_count)
 
     def test_not_unique_slug(self):
         self.auth_client.post(self.url, data=self.form_data)
